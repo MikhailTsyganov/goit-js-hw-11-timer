@@ -7,14 +7,42 @@ class CountdownTimer {
 
     
 
+    
+        
 
     start() {
+        const selectorEl = document.querySelector(this.setting.selector)
+        
+        const timerMarkUp =
+        `<div class="field">
+            <span class="value" data-value="days"></span>
+            <span class="label">Days</span>
+        </div>
+    
+        <div class="field">
+            <span class="value" data-value="hours"></span>
+            <span class="label">Hours</span>
+        </div>
+    
+        <div class="field">
+            <span class="value" data-value="mins"></span>
+            <span class="label">Minutes</span>
+        </div>
+    
+        <div class="field">
+            <span class="value" data-value="secs"></span>
+            <span class="label">Seconds</span>
+        </div>`
+        
+        selectorEl.insertAdjacentHTML("beforeend", timerMarkUp);
 
-        const daysEl = document.querySelector('[data-value="days"]')
-        const hoursEl = document.querySelector('[data-value="hours"]');
-        const minsEl = document.querySelector('[data-value="mins"]');
-        const secsEl = document.querySelector('[data-value="secs"]');
 
+        
+        
+        const daysEl = selectorEl.querySelector('[data-value="days"]')
+        const hoursEl = selectorEl.querySelector('[data-value="hours"]');
+        const minsEl = selectorEl.querySelector('[data-value="mins"]');
+        const secsEl = selectorEl.querySelector('[data-value="secs"]');
         
 
         setInterval(() => {
@@ -30,6 +58,8 @@ class CountdownTimer {
             secsEl.textContent = `${secs}`
         }, 1000);
     }
+
+    
 
 
         getTimeComponents(time) {
@@ -58,3 +88,12 @@ const timer = new CountdownTimer ({
 })
 
 timer.start();
+
+
+const timer2 = new CountdownTimer ({
+    selector: '#timer-2',
+    targetDate: new Date('Sep 11, 2023'),
+    
+})
+
+timer2.start();
